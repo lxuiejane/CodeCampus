@@ -8,10 +8,13 @@ const CourseCard = ({ course }) => {
       </article>
     );
 
-  const openCourseVideo = (url) => {
-    return () => {
-      console.log('Video URL:', url);
-    };
+  const openCourseVideo = (url) => () => {
+    window.open(url, '_blank', 'noopener, noreferrer');
+    // 'noopener, noreferrer' is added for security and performance.
+    // noopener: Prevents the new tab from having access to the window.opener object, which can be a security risk. Without it, the opened page can potentially:
+    // Redirect your original page. Manipulate its contents (phishing risk)
+    // noreferrer: Prevents the browser from sending the Referer header, which might otherwise reveal the URL of your site to the new tab.
+    // BUT, it's not strictly required. Just highly recommended.
   };
 
   return (
