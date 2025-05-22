@@ -12,6 +12,21 @@
   border-bottom: 1px solid #e9ecef;
 }
 
+.search {
+  text-align: center;
+  padding: 20px;
+}
+
+.search-style {
+  width: 50vw;
+  text-align: center;
+  height: 4vh;
+  border-radius: 30px;
+  border-width: 1px;
+  border-color: var(--primary-color);
+  font-family: 'Poppins', sans-serif;
+}
+
 .tab-buttons {
   display: flex;
   flex-wrap: wrap;

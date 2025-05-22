@@ -1,6 +1,10 @@
 import '../styles/CourseCard.css';
+import { useState } from 'react';
 
 const CourseCard = ({ course }) => {
+
+  const [openOverlay, setOpenOverlay] = useState(false)
+
   if (!course)
     return (
       <article className='course-card empty'>
@@ -18,7 +22,7 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <article className='course-card'>
+    <article className='course-card' onClick={() => setOpenOverlay(true)}>
       <figure className='course-image'>
         <img src={course.imageUrl} alt={course.title} />
       </figure>
@@ -49,6 +53,16 @@ const CourseCard = ({ course }) => {
           </button>
         </div>
       </div>
+      {
+        openOverlay &&
+        <article className='overlayDisplay'>
+          <article>
+            <div className='overlayFlex'>
+              <button onClick={() => setOpenOverlay(false)}>X</button>
+            </div>
+          </article>
+        </article>
+      }
     </article>
   );
 };

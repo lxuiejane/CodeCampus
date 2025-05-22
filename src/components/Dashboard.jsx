@@ -6,24 +6,60 @@ import Statistics from './Statistics';
 
 const Dashboard = ({ courseData }) => {
   const [activeTab, setActiveTab] = useState('all');
+  const [searchInput, setSearchInput] = useState('');
+  const [sortOption, setSortOption] = useState('');
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
 
   const filteredCourses = () => {
     if (!courseData || !Array.isArray(courseData)) return [];
 
-    if (activeTab === 'all') {
-      return courseData;
-    } else if (activeTab === 'beginner') {
-      return courseData.filter((course) => course.level === 'Beginner');
+    let filtered = courseData;
+
+    // Filter by tab
+    if (activeTab === 'beginner') {
+      filtered = filtered.filter((course) => course.level === 'Beginner');
     } else if (activeTab === 'gevorderd') {
-      return courseData.filter((course) => course.level === 'Gevorderd');
+      filtered = filtered.filter((course) => course.level === 'Gevorderd');
     } else if (activeTab === 'populair') {
-      return [...courseData].sort((a, b) => b.views - a.views);
+      filtered = [...filtered].sort((a, b) => b.views - a.views);
     }
-    return courseData;
+
+    // Filter by search input
+    if (searchInput.trim() !== '') {
+      filtered = filtered.filter((course) =>
+        course.title.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
+
+    // Sort based on selected sort option (unless already sorted in 'populair')
+    if (activeTab !== 'populair') {
+      if (sortOption === 'views') {
+        filtered = [...filtered].sort((a, b) => b.views - a.views);
+      } else if (sortOption === 'rating') {
+        filtered = [...filtered].sort((a, b) => b.rating - a.rating);
+      } else if (sortOption === 'duration') {
+        filtered = [...filtered].sort((a, b) => a.duration - b.duration);
+      }
+    }
+
+    return filtered;
   };
 
   return (
     <section className='dashboard'>
+      <div className="search">
+        <input
+          className='search-style'
+          type="text"
+          placeholder="Zoek een titel op"
+          onChange={handleChange}
+          value={searchInput}
+          name="search"
+        />
+      </div>
       <header className='dashboard-header'>
         <nav className='tab-buttons'>
           <button
@@ -53,16 +89,32 @@ const Dashboard = ({ courseData }) => {
         </nav>
       </header>
 
+      {/* Sorteer-dropdown */}
+      <div className='sort-container'>
+        <label htmlFor='sort'>Sorteer op: </label>
+        <select
+          id='sort'
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          className='sort-dropdown'
+        >
+          <option value=''>Standaard</option>
+          <option value='views'>Populariteit</option>
+          <option value='rating'>Rating</option>
+          <option value='duration'>Duur</option>
+        </select>
+      </div>
+
       <div className='dashboard-content'>
         <section className='main-content'>
           <h2>
             {activeTab === 'all'
               ? 'Alle Cursussen'
               : activeTab === 'beginner'
-              ? 'Cursussen voor Beginners'
-              : activeTab === 'gevorderd'
-              ? 'Gevorderde Cursussen'
-              : 'Meest Bekeken Cursussen'}
+                ? 'Cursussen voor Beginners'
+                : activeTab === 'gevorderd'
+                  ? 'Gevorderde Cursussen'
+                  : 'Meest Bekeken Cursussen'}
           </h2>
           <CourseList courses={filteredCourses()} />
         </section>

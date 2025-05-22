@@ -60,6 +60,8 @@
 - Er is een knop om alle opgeslagen voorkeuren te resetten
 - Filtervoorkeuren worden alleen lokaal opgeslagen
 
+SHOULD
+
 ### User Story 7: Responsive design verbetering
 **Als mobiele gebruiker** wil ik **dat het dashboard optimaal werkt op mijn apparaat** zodat ik **gemakkelijk cursussen kan bekijken onderweg**.
 
@@ -68,6 +70,8 @@
 - Navigatie-elementen transformeren naar een hamburgermenu op kleine schermen
 - Touch-interacties zijn geoptimaliseerd voor mobiel gebruik
 - Inhoudsweergave past zich aan voor optimale leesbaarheid op kleine schermen
+
+SHOULD
 
 ## Could-have User Stories
 
@@ -80,6 +84,8 @@
 - Alle elementen hebben aangepaste styling voor beide modi
 - De modus-voorkeur respecteert de systeeminstelling als standaard
 
+COULD
+
 ### User Story 9: Voortgang bijhouden
 **Als gebruiker** wil ik **kunnen bijhouden welke cursussen ik heb bekeken** zodat ik **mijn leervoortgang kan volgen**.
 
@@ -88,6 +94,8 @@
 - Bekeken cursussen krijgen een visuele indicator
 - Er is een filter/tab om bekeken of onbekeken cursussen te tonen
 - Voortgangsinformatie wordt lokaal opgeslagen
+
+COULD
 
 ### User Story 10: Animaties toevoegen
 **Als gebruiker** wil ik **subtiele animaties zien bij interacties** zodat **de gebruikerservaring rijker en intuïtiever aanvoelt**.
@@ -98,3 +106,5 @@
 - Laadanimaties tijdens het ophalen van data
 - Animaties zijn subtiel en niet afleidend
 - Animaties kunnen worden uitgeschakeld (voor toegankelijkheid)
+
+COULD
