@@ -3,7 +3,10 @@ import { useState } from 'react';
 
 const CourseCard = ({ course }) => {
 
-  const [openOverlay, setOpenOverlay] = useState(false)
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal)
+  }
 
   if (!course)
     return (
@@ -22,48 +25,75 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <article className='course-card' onClick={() => setOpenOverlay(true)}>
-      <figure className='course-image'>
-        <img src={course.imageUrl} alt={course.title} />
-      </figure>
-      <div className='course-content'>
-        <h3>{course.title}</h3>
-        <p className='course-description'>{course.description}</p>
-        <dl className='course-details'>
-          <div>
-            <dt className='visually-hidden'>Niveau</dt>
-            <dd className='level'>Niveau: {course.level}</dd>
-          </div>
-          <div>
-            <dt className='visually-hidden'>Duur</dt>
-            <dd className='duration'>Duur: {course.duration}</dd>
-          </div>
-        </dl>
-        <footer className='course-stats'>
-          <span className='members'>{course.members} leden</span>
-          <span className='views'>{course.views} weergaven</span>
-          <span className='rating'>⭐ {course.rating}</span>
-        </footer>
-        <div className='course-actions'>
-          <button
-            className='course-button'
-            onClick={openCourseVideo(course.videoUrl)}
-          >
-            Bekijk Video
-          </button>
-        </div>
-      </div>
-      {
-        openOverlay &&
-        <article className='overlayDisplay'>
-          <article>
-            <div className='overlayFlex'>
-              <button onClick={() => setOpenOverlay(false)}>X</button>
+    <main>
+      <article className='course-card'>
+        <figure className='course-image' onClick={toggleModal}>
+          <img src={course.imageUrl} alt={course.title} />
+        </figure>
+        <div className='course-content'>
+          <h3>{course.title}</h3>
+          <p className='course-description'>{course.description}</p>
+          <dl className='course-details'>
+            <div>
+              <dt className='visually-hidden'>Niveau</dt>
+              <dd className='level'>Niveau: {course.level}</dd>
             </div>
-          </article>
+            <div>
+              <dt className='visually-hidden'>Duur</dt>
+              <dd className='duration'>Duur: {course.duration}</dd>
+            </div>
+          </dl>
+          <footer className='course-stats'>
+            <span className='members'>{course.members} leden</span>
+            <span className='views'>{course.views} weergaven</span>
+            <span className='rating'>⭐ {course.rating}</span>
+          </footer>
+          <div className='course-actions'>
+            <button
+              className='course-button'
+              onClick={openCourseVideo(course.videoUrl)}
+            >
+              Bekijk Video
+            </button>
+          </div>
+        </div>
+      </article>
+
+      {modal && (
+        <article className='modal'>
+          <div className='screen'></div>
+          <div className="model-content">
+            <img src={course.imageUrl} />
+            <h3 className='modaltext'>{course.title}</h3>
+            <p className='coursedesc'>{course.description}</p>
+            <p className='rating'>⭐ {course.rating}</p>
+            <div className='course-details'>
+              <div>
+                <p className='visually-hidden'>Niveau</p>
+                <p className='level'>Niveau: {course.level}</p>
+              </div>
+              <div>
+                <p className='visually-hidden'>Duur</p>
+                <p className='duration'>Duur: {course.duration}</p>
+              </div>
+            </div>
+            <div className='flexcourse'>
+              <p className='members'>{course.members} leden</p>
+              <p className='views'>{course.views} weergaven</p>
+            </div>
+            <div className='course-actions'>
+              <button className='course-button' onClick={toggleModal}>CLOSE</button>
+              <button
+                className='course-button'
+                onClick={openCourseVideo(course.videoUrl)}
+              >
+                Bekijk Video
+              </button>
+            </div>
+          </div>
         </article>
-      }
-    </article>
+      )}
+    </main>
   );
 };
 
