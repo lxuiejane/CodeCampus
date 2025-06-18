@@ -8,7 +8,11 @@ const Contact = () => {
       <section class="contact__form">
       <p>Telefoon: 010 123456</p>
       <p>Email: Helpdesk@CodeCampus.nl</p>
-      <p>Lorem ipsummm.</p>
+      <p>
+        Wij zijn open op de weekdagen, helaas niet op de weekenden. 
+        <br />
+        We nemen zo snel mogelijk contact met u op!
+        </p>
       </section>
     </main>
   );
