@@ -3,14 +3,19 @@
 
 :root {
   --primary-color: #3498db;
-  --primary-dark: #2980b9;
+  --primary-dark: #2980b9; 
+  /* #155078 DARK */
   --secondary-color: #2ecc71;
   --secondary-dark: #27ae60;
   --accent-color: #f39c12;
   --text-color: #333;
+  /* #f5f7fa DARKMODE */
   --text-light: #666;
+  /* #fff DARK MODE */
   --bg-color: #f5f7fa;
+  /* #131313 DARKMODE */
   --card-bg: #fff;
+  /* #313131 DARKMODE */
   --border-radius: 10px;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
@@ -37,9 +42,10 @@ body {
 
 .app-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin: 0.5rem 0;
   padding: 40px 0;
   background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    /* background: linear-gradient(135deg, #060d17, #095a6c); DARK MODE*/ 
   border-radius: var(--border-radius);
   color: white;
   box-shadow: var(--shadow);

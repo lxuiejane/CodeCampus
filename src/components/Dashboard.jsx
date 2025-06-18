@@ -82,8 +82,6 @@ const Dashboard = ({ courseData }) => {
       filtered = filtered.filter((course) => course.level === 'Gevorderd');
     } else if (activeTab === 'populair') {
       filtered = [...filtered].sort((a, b) => b.views - a.views);
-    } else if (activeTab === 'favorieten') {
-      filtered = filtered.filter((course) => favoriteIds.includes(course.id));
     } else if (activeTab === 'filteren' && selectedCategories.length > 0) {
       filtered = filtered.filter((course) =>
         course.categories?.some((category) => selectedCategories.includes(category))
@@ -130,7 +128,6 @@ const Dashboard = ({ courseData }) => {
           <button className={activeTab === 'beginner' ? 'active' : ''} onClick={() => setActiveTab('beginner')}>Voor Beginners</button>
           <button className={activeTab === 'gevorderd' ? 'active' : ''} onClick={() => setActiveTab('gevorderd')}>Gevorderd</button>
           <button className={activeTab === 'populair' ? 'active' : ''} onClick={() => setActiveTab('populair')}>Meest Bekeken</button>
-          <button className={activeTab === 'favorieten' ? 'active' : ''} onClick={() => setActiveTab('favorieten')}>⭐ Favorieten</button>
           <button className={activeTab === 'filteren' ? 'active' : ''} onClick={() => setActiveTab('filteren')}>Meer Filter</button>
         </nav>
       </header>
@@ -175,7 +172,6 @@ const Dashboard = ({ courseData }) => {
             {activeTab === 'beginner' && 'Cursussen voor Beginners'}
             {activeTab === 'gevorderd' && 'Gevorderde Cursussen'}
             {activeTab === 'populair' && 'Meest Bekeken Cursussen'}
-            {activeTab === 'favorieten' && 'Mijn Favorieten'}
             {activeTab === 'filteren' && 'Meer Filter Keuze'}
           </h2>
           <CourseList courses={filteredCourses()} />

@@ -13,12 +13,14 @@
 }
 
 .search {
+  display: flex;
+  justify-content: center;
   text-align: center;
   padding: 20px;
 }
 
 .search-style {
-  width: 50vw;
+  width: 80vw;
   text-align: center;
   height: 4vh;
   border-radius: 30px;
