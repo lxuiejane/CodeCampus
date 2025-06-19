@@ -253,3 +253,20 @@
   height: 11rem;
   object-fit: cover;
 }
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.favorite__btn {
+  color: gold;
+  border: none;
+  background: none;
+  font-size: 30px;
+  font-weight: 900;
+}

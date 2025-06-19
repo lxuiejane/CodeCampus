@@ -3,6 +3,7 @@ import '../styles/Dashboard.css';
 import CourseList from './CourseList';
 import PopularCourses from './PopularCourses';
 import Statistics from './Statistics';
+import Toggle from './Toggle';
 
 const Dashboard = ({ courseData }) => {
   const [activeTab, setActiveTab] = useState('all');
@@ -131,21 +132,23 @@ const Dashboard = ({ courseData }) => {
           <button className={activeTab === 'filteren' ? 'active' : ''} onClick={() => setActiveTab('filteren')}>Meer Filter</button>
         </nav>
       </header>
-
-      <div className='sort-container'>
-        <label htmlFor='sort'>Sorteer op: </label>
-        <select
-          id='sort'
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-          className='sort-dropdown'
-        >
-          <option value=''>Standaard</option>
-          <option value='views'>Populariteit</option>
-          <option value='rating'>Rating</option>
-          <option value='duration'>Duur</option>
-        </select>
-      </div>
+      <section className="flexsortbtn">
+        <div className='sort-container'>
+          <label htmlFor='sort'>Sorteer op: </label>
+          <select
+            id='sort'
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className='sort-dropdown'
+          >
+            <option value=''>Standaard</option>
+            <option value='views'>Populariteit</option>
+            <option value='rating'>Rating</option>
+            <option value='duration'>Duur</option>
+          </select>
+        </div>
+        <Toggle />
+      </section>
 
       {activeTab === 'filteren' && (
         <div className='category-filter'>

@@ -3,7 +3,7 @@
     margin-bottom: 0.5rem;
     padding: 1.5rem 0rem;
     background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-        /* background: linear-gradient(135deg, #060d17, #095a6c); DARK MODE*/ 
+    /* background: linear-gradient(135deg, #060d17, #095a6c); DARK MODE*/
     border-radius: var(--border-radius);
     color: white;
     box-shadow: var(--shadow);
@@ -31,7 +31,7 @@
     margin-top: 0.5rem;
     padding: 1.5rem 2rem;
     background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-        /* background: linear-gradient(135deg, #060d17, #095a6c); DARK MODE*/ 
+    /* background: linear-gradient(135deg, #060d17, #095a6c); DARK MODE*/
     border-radius: var(--border-radius);
     color: white;
     box-shadow: var(--shadow);
@@ -64,3 +64,13 @@ a:hover {
     transition: 0.3s;
 }
 
+.modebtn {
+    border: none;
+    font-size: 13px;
+    margin-right: 2rem;
+    border-radius: 10rem;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-weight: 600;
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+}

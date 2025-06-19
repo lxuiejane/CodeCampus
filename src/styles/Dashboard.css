@@ -254,6 +254,13 @@
   cursor: pointer;
 }
 
+.flexsortbtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (max-width: 900px) {
   .dashboard-content {
     flex-direction: column;

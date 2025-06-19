@@ -1,28 +1,34 @@
 import '../styles/CourseCard.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const CourseCard = ({ course }) => {
-
   const [modal, setModal] = useState(false);
-  const toggleModal = () => {
-    setModal(!modal)
-  }
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  if (!course)
-    return (
-      <article className='course-card empty'>
-        Geen cursus informatie beschikbaar
-      </article>
-    );
+  const toggleModal = () => setModal(!modal);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setIsFavorite(favorites.includes(course.id));
+  }, [course.id]);
+
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const updatedFavorites = isFavorite
+      ? favorites.filter((favId) => favId !== course.id)
+      : [...favorites, course.id];
+
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    setIsFavorite(!isFavorite);
+  };
 
   const openCourseVideo = (url) => () => {
-    window.open(url, '_blank', 'noopener, noreferrer');
-    // 'noopener, noreferrer' is added for security and performance.
-    // noopener: Prevents the new tab from having access to the window.opener object, which can be a security risk. Without it, the opened page can potentially:
-    // Redirect your original page. Manipulate its contents (phishing risk)
-    // noreferrer: Prevents the browser from sending the Referer header, which might otherwise reveal the URL of your site to the new tab.
-    // BUT, it's not strictly required. Just highly recommended.
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
+
+  if (!course) {
+    return <p className="course-detail">Cursus niet gevonden.</p>;
+  }
 
   return (
     <main>
@@ -64,7 +70,15 @@ const CourseCard = ({ course }) => {
           <div className='screen'></div>
           <div className="model-content">
             <img src={course.imageUrl} />
-            <h3 className='modaltext'>{course.title}</h3>
+            <div className="flex">
+              <h3 className='modaltext'>{course.title}</h3>
+              <button
+                className={`favorite__btn ${isFavorite ? 'favorited' : ''}`}
+                onClick={toggleFavorite}
+              >
+                {isFavorite ? '★' : '☆'}
+              </button>
+            </div>
             <p className='coursedesc'>{course.description}</p>
             <p className='rating'>⭐ {course.rating}</p>
             <div className='course-details'>

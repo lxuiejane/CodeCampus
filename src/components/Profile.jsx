@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/Dashboard.css';
 import CourseList from './CourseList';
 
-const Profile = ({ courseData = [], favoriteIds = [], viewedIds = [] }) => {
+const Profile = ({ courseData = [] }) => {
     const [activeTab, setActiveTab] = useState('favorieten');
+    const [favoriteIds, setFavoriteIds] = useState([]);
+    const [viewedIds, setViewedIds] = useState([]);
+
+    useEffect(() => {
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        setFavoriteIds(storedFavorites);
+
+        const storedViewed = JSON.parse(localStorage.getItem('viewed')) || [];
+        setViewedIds(storedViewed);
+    }, [activeTab]); 
 
     const filteredCourses = () => {
         if (!courseData || !Array.isArray(courseData)) return [];
@@ -45,16 +55,18 @@ const Profile = ({ courseData = [], favoriteIds = [], viewedIds = [] }) => {
                     {activeTab === 'favorieten' && 'Mijn Favorieten'}
                     {activeTab === 'bekeken' && 'Bekeken Cursussen'}
                 </h2>
+
                 <section className="courses__list">
-                {coursesToShow.length > 0 ? (
-                    <CourseList courses={coursesToShow} />
-                ) : (
-                    <p className="no-courses-message">Geen cursussen gevonden.</p>
-                )}
+                    {coursesToShow.length > 0 ? (
+                        <CourseList courses={coursesToShow} />
+                    ) : (
+                        <p className="no-courses-message">Geen cursussen gevonden.</p>
+                    )}
+                </section>
             </section>
-        </section>
-        </main >
+        </main>
     );
 };
 
 export default Profile;
+
